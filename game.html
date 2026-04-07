@@ -3,43 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Game</title>
-  <link rel="icon" type="image/png" href="images/WordBuddies.png">
+  <title>Play Quiz | WordSprout</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/WordSprout.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-  <div class="page-container">
-    <div class="content-card">
-      <div class="header">
-        <h1>Word Match Game</h1>
-        <div class="score">Score: <span id="score">0</span></div>
-      </div>
-      
-      <div class="game-container">
-        <div class="image-container">
-          <img id="game-image" class="word-image" src="" alt="Game Image">
-          <div class="loader hidden" id="loader"></div>
+<body class="quiz-page-modern">
+  <main class="quiz-shell">
+    <header class="quiz-topbar">
+      <a href="index.html" class="learn-home-link">
+        <i class="fas fa-arrow-left"></i>
+        <span>Home</span>
+      </a>
+
+      <div class="quiz-topbar-right">
+        <label class="quiz-filter">
+          <span>Category</span>
+          <select id="quiz-category" class="quiz-select"></select>
+        </label>
+
+        <button id="quiz-audio-btn" class="button back-button quiz-sound-button" type="button">
+          <i class="fas fa-volume-up"></i>
+          Hear Word
+        </button>
+
+        <div class="quiz-stats">
+          <div class="quiz-stat-pill">
+            <span class="quiz-stat-label">Round</span>
+            <strong class="quiz-stat-value">
+              <span id="round-current">1</span> / <span id="round-total">10</span>
+            </strong>
+          </div>
+
+          <div class="quiz-stat-pill">
+            <span class="quiz-stat-label">Score</span>
+            <strong class="quiz-stat-value">
+              <span id="score">0</span>
+            </strong>
+          </div>
         </div>
-        
-        <div class="options" id="options-container">
-          <!-- Options will be generated here -->
+      </div>
+    </header>
+
+    <section id="quiz-empty" class="quiz-empty-card hidden">
+      <div class="quiz-empty-icon">
+        <i class="fas fa-circle-info"></i>
+      </div>
+      <h2>Not enough words yet</h2>
+      <p>This category needs at least 2 words before a quiz can start.</p>
+    </section>
+
+    <section id="quiz-stage" class="quiz-stage">
+      <div class="quiz-image-card">
+        <div class="quiz-image-head">
+          <div id="game-category" class="learn-category-badge">All Words</div>
+          <div id="game-emoji" class="learn-emoji-badge">📘</div>
+        </div>
+
+        <div class="quiz-image-stage">
+          <img id="game-image" class="word-image hidden" src="" alt="Game Image">
+          <div class="loader" id="loader"></div>
         </div>
       </div>
-      
-      <div class="feedback hidden" id="feedback">
-        <span id="feedback-text"></span>
-        <button id="continue-btn" class="button">Continue</button>
+
+      <div class="quiz-panel">
+        <p class="quiz-mini-label">WordSprout Quiz</p>
+        <h1 class="quiz-title">What word matches this picture?</h1>
+        <p class="quiz-subtext">Choose the correct word. You can also press keys 1 to 4.</p>
+
+        <div class="quiz-options" id="options-container"></div>
+
+        <div class="feedback quiz-feedback hidden" id="feedback">
+          <span id="feedback-text"></span>
+        </div>
+
+        <button id="next-btn" class="button quiz-next-button hidden" type="button">
+          Next Question
+          <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
-      
-      <div class="button-group">
-        <button id="next-btn" class="button hidden">Next Question</button>
-        <a href="index.html" class="button back-button">
-          <i class="fas fa-home"></i> Back to Home
+    </section>
+
+    <section id="quiz-finish" class="quiz-finish-card hidden">
+      <div class="quiz-finish-icon">
+        <i class="fas fa-star"></i>
+      </div>
+
+      <p class="quiz-mini-label">Quiz Complete</p>
+      <h2 class="quiz-finish-title">Nice work!</h2>
+      <p class="quiz-finish-score">
+        You got <strong id="final-score">0</strong> out of <strong id="final-total">10</strong>.
+      </p>
+      <p id="quiz-message" class="quiz-finish-message"></p>
+      <p class="quiz-best-score">
+        Best score: <strong id="best-score">0</strong>
+      </p>
+
+      <div class="quiz-finish-actions">
+        <button id="restart-btn" class="button" type="button">
+          <i class="fas fa-rotate-right"></i>
+          Play Again
+        </button>
+
+        <a id="learn-link" href="learn.html" class="button back-button">
+          <i class="fas fa-book-open"></i>
+          Learn Words
         </a>
       </div>
-    </div>
-  </div>
+
+      <div class="quiz-review-section">
+        <h3>Review Missed Words</h3>
+        <div id="review-list" class="quiz-review-grid"></div>
+      </div>
+    </section>
+  </main>
 
   <script src="data.js"></script>
   <script src="game.js"></script>

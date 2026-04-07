@@ -3,69 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Buddies</title>
-  <link rel="icon" type="image/png" href="images/WordBuddies.png">
+  <title>WordSprout</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/WordSprout.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="page-container">
-    <div class="content-card">
-      <div class="logo">
-        <i class="fas fa-book-open"></i>
-        <h1 class="title">Word Buddies</h1>
+  <main class="home-shell">
+    <section class="home-hero">
+      <div class="home-hero-text">
+        <div class="home-brand">
+          <img src="images/WordSprout.png" alt="WordSprout logo" class="home-brand-logo">
+        </div>
+
+        <h1 class="home-title">WordSprout</h1>
+        <p class="home-subtitle">
+          Learn, play, and grow new words.
+        </p>
+
+        <div class="home-actions">
+          <a href="learn.html" class="button home-main-button">
+            <i class="fas fa-graduation-cap"></i>
+            Learn Words
+          </a>
+
+          <a href="game.html" class="button home-main-button home-secondary-button">
+            <i class="fas fa-gamepad"></i>
+            Play Quiz
+          </a>
+
+          <button class="button home-main-button home-light-button" id="how-to-play">
+            <i class="fas fa-circle-question"></i>
+            How to Play
+          </button>
+        </div>
       </div>
-      
-      <div class="button-group">
-        <a href="learn.html" class="button" onclick="event.preventDefault(); window.location.href='learn.html'">
-          <i class="fas fa-graduation-cap"></i>
-          Learn Words
-        </a>
-        <a href="game.html" class="button" onclick="event.preventDefault(); window.location.href='game.html'">
-          <i class="fas fa-gamepad"></i>
-          Play Game
-        </a>
-        <button class="button" id="how-to-play">
-          <i class="fas fa-question-circle"></i>
-          How to Play
-        </button>
+
+      <div class="home-hero-card">
+        <div class="home-icon-box">
+          <i class="fas fa-seedling"></i>
+        </div>
+
+        <div class="home-stats">
+          <div class="home-stat">
+            <span class="home-stat-label">Vocabulary</span>
+            <strong class="home-stat-value"><span id="word-count">0</span> Words</strong>
+          </div>
+          <div class="home-stat">
+            <span class="home-stat-label">Categories</span>
+            <strong class="home-stat-value"><span id="category-count">0</span> Groups</strong>
+          </div>
+          <div class="home-stat">
+            <span class="home-stat-label">Goal</span>
+            <strong class="home-stat-value">Learn + Play + Grow</strong>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+
+    <section class="home-grid">
+      <article class="home-panel">
+        <div class="home-panel-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h2>Learn Mode</h2>
+        <p>
+          Explore vocabulary with a word, picture, pronunciation, definition, and example sentence.
+        </p>
+      </article>
+
+      <article class="home-panel">
+        <div class="home-panel-icon">
+          <i class="fas fa-volume-high"></i>
+        </div>
+        <h2>Audio Support</h2>
+        <p>
+          Hear each word aloud so learners can connect spelling with pronunciation.
+        </p>
+      </article>
+
+      <article class="home-panel">
+        <div class="home-panel-icon">
+          <i class="fas fa-puzzle-piece"></i>
+        </div>
+        <h2>Quiz Mode</h2>
+        <p>
+          Match pictures with the correct word and build confidence through interactive practice.
+        </p>
+      </article>
+    </section>
+  </main>
 
   <div id="how-to-modal" class="modal hidden">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>How to Play</h2>
+
       <div class="instructions">
         <div class="instruction-card">
           <div class="number">1</div>
-          <p>Click <strong>Learn Words</strong> to explore new words with pictures and sounds</p>
+          <p>Open <strong>Learn Words</strong> to explore vocabulary with pictures, sound, and simple explanations.</p>
         </div>
+
         <div class="instruction-card">
           <div class="number">2</div>
-          <p>Press the 🔊 button to hear how the word sounds</p>
+          <p>Use the audio button to hear how each word is pronounced.</p>
         </div>
+
         <div class="instruction-card">
           <div class="number">3</div>
-          <p>Press <strong>Next Word</strong> to discover more words</p>
+          <p>Move through the word list and learn at your own pace.</p>
         </div>
+
         <div class="instruction-card">
           <div class="number">4</div>
-          <p>In the game, match pictures to the correct word!</p>
+          <p>Try <strong>Play Quiz</strong> to test your vocabulary and review missed words.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <script src="data.js"></script>
   <script>
     const modal = document.getElementById("how-to-modal");
     const btn = document.getElementById("how-to-play");
-    const span = document.getElementsByClassName("close")[0];
+    const span = document.querySelector(".close");
 
     btn.onclick = () => modal.classList.remove("hidden");
     span.onclick = () => modal.classList.add("hidden");
-    window.onclick = (e) => e.target === modal && modal.classList.add("hidden");
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.classList.add("hidden");
+      }
+    };
+
+    const wordCountEl = document.getElementById("word-count");
+    const categoryCountEl = document.getElementById("category-count");
+
+    if (typeof WORDS !== "undefined" && wordCountEl) {
+      wordCountEl.textContent = WORDS.length;
+    }
+
+    if (typeof CATEGORIES !== "undefined" && categoryCountEl) {
+      categoryCountEl.textContent = CATEGORIES.filter(category => category !== "All").length;
+    }
   </script>
 </body>
 </html>

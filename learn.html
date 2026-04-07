@@ -3,50 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn Words</title>
-  <link rel="icon" type="image/png" href="images/WordBuddies.png">
+  <title>Learn Words | WordSprout</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/WordSprout.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-  <div class="page-container">
-    <div class="content-card learn-card">
-      <div class="header">
-        <h1>Learn Words</h1>
-        <div class="progress">Word <span id="current">1</span> of <span id="total">10</span></div>
-      </div>
-      
-      <div class="word-container">
-        <h1 id="word" class="word-display">Loading...</h1>
-        <div id="phonetic" class="phonetic"></div>
-      </div>
-      
-      <div class="image-container">
-        <img id="word-image" class="word-image" src="" alt="Word Image">
-        <div class="loader hidden" id="loader"></div>
-      </div>
-      
-      <div class="definition-container">
-        <div id="definition" class="definition-text"></div>
-        <div id="example" class="example-text"></div>
-      </div>
-      
-      <div class="button-group">
-        <button id="play-audio" class="button icon-button">
-          <i class="fas fa-volume-up"></i>
-        </button>
-        <button id="prev-word" class="button">
-          <i class="fas fa-arrow-left"></i> Previous
-        </button>
-        <button id="next-word" class="button">
-          Next <i class="fas fa-arrow-right"></i>
-        </button>
-      </div>
-      <a href="index.html" class="button back-button" onclick="event.preventDefault(); window.location.href='index.html'">
-        <i class="fas fa-home"></i> Back to Home
+<body class="learn-page-modern">
+  <main class="learn-shell">
+    <header class="learn-topbar">
+      <a href="index.html" class="learn-home-link">
+        <i class="fas fa-arrow-left"></i>
+        <span>Home</span>
       </a>
-    </div>
-  </div>
+
+      <div class="learn-progress-card">
+        <span class="learn-progress-label">Progress</span>
+        <strong class="learn-progress-value">
+          <span id="current">1</span> / <span id="total">0</span>
+        </strong>
+      </div>
+    </header>
+
+    <section class="learn-hero-card learn-hero-split">
+      <div class="learn-hero-left">
+        <div class="learn-badge-row">
+          <div id="category" class="learn-category-badge">All Words</div>
+          <div id="emoji" class="learn-emoji-badge">📘</div>
+        </div>
+
+        <p class="learn-mini-label">WordSprout</p>
+        <h1 id="word" class="learn-main-word">Loading...</h1>
+        <div id="phonetic" class="learn-main-phonetic"></div>
+        <p class="learn-subtext">Learn, play, and grow new words.</p>
+
+        <button id="play-audio" class="button learn-audio-button" aria-label="Play word audio">
+          <i class="fas fa-volume-up"></i>
+          Say It Aloud
+        </button>
+      </div>
+
+      <div class="learn-hero-image-wrap">
+        <div class="learn-hero-image-stage">
+          <img id="word-image" class="word-image hidden" src="" alt="Word Image">
+          <div class="loader" id="loader"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="learn-details-panel">
+      <div class="learn-info-block">
+        <div class="learn-info-label">Meaning</div>
+        <div id="definition" class="learn-definition-text"></div>
+      </div>
+
+      <div class="learn-info-block">
+        <div class="learn-info-label">Example</div>
+        <div id="example" class="learn-example-text"></div>
+      </div>
+
+      <div class="learn-controls">
+        <button id="prev-word" class="button learn-nav-button">
+          <i class="fas fa-arrow-left"></i>
+          Previous
+        </button>
+
+        <button id="next-word" class="button learn-nav-button">
+          Next
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </section>
+  </main>
 
   <script src="data.js"></script>
   <script src="learn.js"></script>
