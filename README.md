@@ -1,2 +1,2 @@
-# Word-Buddies
-A game for word learning
+# WordSprout
+Learn, play, and grow new words.
